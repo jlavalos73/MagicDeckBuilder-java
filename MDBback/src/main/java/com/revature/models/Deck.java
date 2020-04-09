@@ -25,7 +25,7 @@ public class Deck {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "deck_join",
 			joinColumns = {
 					@JoinColumn(name = "card_id", referencedColumnName = "id")},
