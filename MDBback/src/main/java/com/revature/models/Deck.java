@@ -12,24 +12,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Component
 @Table(name="mtg_decks")
 public class Deck {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinTable(name = "deck_join",
-			joinColumns = {
-					@JoinColumn(name = "card_id", referencedColumnName = "id")},
-			inverseJoinColumns = {
-					@JoinColumn(name = "deck_id", referencedColumnName = "id")})
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="deck")
+	@JsonManagedReference
 	private List<Card> cards;
 	
 	
