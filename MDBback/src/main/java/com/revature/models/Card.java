@@ -38,7 +38,7 @@ public class Card {
 	private int toughness;
 	
 	@Column
-	@ManyToMany(mappedBy = "mtg_decks", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "mtg_decks", fetch = FetchType.EAGER)
 	private List<Deck> decks;
 
 	public Card() {
