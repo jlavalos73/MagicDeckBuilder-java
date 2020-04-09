@@ -19,7 +19,7 @@
     
     <bean name="ourDataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="url" value="jdbc:oracle:thin:@revature-training.cehe1xne1cax.us-east-1.rds.amazonaws.com:1521:orcl"/>
-    	<property name="username" value="ormdemo2"/>
+    	<property name="username" value="mdb"/>
     	<property name="password" value="password"/>
     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
     </bean>
@@ -31,7 +31,7 @@
     			<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
     			<prop key="show_sql">true</prop>
     			<prop key="hibernate.hbm2ddl.auto">update</prop>
-    			<prop key="hibernate.default_schema">ormdemo2</prop>
+    			<prop key="hibernate.default_schema">mdb</prop>
     		</props>
     	</property>
     </bean>
