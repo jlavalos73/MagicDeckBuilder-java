@@ -41,11 +41,17 @@ public class Card {
 	@Column
 	private int toughness;
 	
-
+<<<<<<< HEAD
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn
 	@JsonBackReference
 	private Deck deck;
+=======
+	@Column
+	@ManyToMany(mappedBy = "mtg_decks", fetch = FetchType.EAGER)
+	private List<Deck> decks;
+>>>>>>> 80b5e3ce7a7cd9df37b85816543a507ceb5cb6a7
 
 	public Card() {
 		super();

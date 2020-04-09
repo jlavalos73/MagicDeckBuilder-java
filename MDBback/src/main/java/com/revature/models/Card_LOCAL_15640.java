@@ -41,7 +41,7 @@ public class Card {
 	@Column
 	private int toughness;
 	
-
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn
 	@JsonBackReference
