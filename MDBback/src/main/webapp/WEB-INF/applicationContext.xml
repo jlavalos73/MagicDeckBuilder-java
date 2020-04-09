@@ -17,12 +17,15 @@
     <mvc:annotation-driven></mvc:annotation-driven>
     <tx:annotation-driven/>
     
+    
     <bean name="ourDataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="url" value="jdbc:oracle:thin:@revature-training.cehe1xne1cax.us-east-1.rds.amazonaws.com:1521:orcl"/>
     	<property name="username" value="ormdemo2"/>
     	<property name="password" value="password"/>
     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-    </bean>
+    </bean> 
+
+    
     <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
     	<property name="dataSource" ref="ourDataSource"/>
     	<property name="packagesToScan" value="com.revature"/>
