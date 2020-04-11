@@ -35,14 +35,14 @@ public class CardController {
 		return ResponseEntity.status(HttpStatus.OK).body(c);
 	}
 	
-	@GetMapping("/byDeck/{id}")
-	public ResponseEntity<List<Card>> getCardByDeck(@PathVariable("id") Deck d) {
-		List<Card> c = dao.findByDeck(d);
-		if(c == null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(c);
-	}
+//	@GetMapping("/byDeck/{id}")
+//	public ResponseEntity<List<Card>> getCardByDeck(@PathVariable("id") Deck d) {
+//		List<Card> c = dao.findByDeck(d);
+//		if(c == null) {
+//			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+//		}
+//		return ResponseEntity.status(HttpStatus.OK).body(c);
+//	}
 	
 	@PostMapping
 	public ResponseEntity<Card> addCard(@RequestBody Card c){
