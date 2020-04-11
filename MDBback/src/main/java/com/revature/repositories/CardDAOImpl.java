@@ -27,15 +27,6 @@ public class CardDAOImpl implements CardDAO {
 	}
 
 	@Override
-	public List<Card> findByDeck(Deck d) {
-		Session s = sf.getCurrentSession();
-		String hql = "FROM mtg_cards INNER JOIN deck_join ON id = card_id WHERE deck_id = " + d.getId();
-		Query query = s.createQuery(hql);
-		List<Card> res = (List<Card>) query.getResultList();
-		return res;
-	}
-
-	@Override
 	public void delete(Card c) {
 		Session s = sf.getCurrentSession();
 		s.delete(c);
