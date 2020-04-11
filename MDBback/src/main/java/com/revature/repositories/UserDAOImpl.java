@@ -32,4 +32,26 @@ public class UserDAOImpl implements UserDAO {
 		return results.get(0);
 	}
 
+	@Override
+	public void insert(User u) {
+		Session s = sf.getCurrentSession(); 
+		s.save(u);
+		
+		
+	}
+
+	@Override
+	public void update(User u) {
+		Session s = sf.getCurrentSession(); 
+		s.update(u);
+		
+	}
+
+	@Override
+	public void delete(User u) {
+		Session s = sf.getCurrentSession(); 
+		s.delete(u);
+		
+	}
+
 }
