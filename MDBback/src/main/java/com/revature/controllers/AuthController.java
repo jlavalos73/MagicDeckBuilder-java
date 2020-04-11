@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.models.User;
 import com.revature.models.templates.LoginTemplate;
 import com.revature.repositories.UserDAO;
+import com.revature.services.SecurityService;
 
 
 @RestController
@@ -23,17 +24,21 @@ public class AuthController {
 	@Autowired
 	private UserDAO udao;
 	
+	@Autowired
+	private SecurityService sec;
 	
 	@PostMapping
 	public ResponseEntity<User> login(@RequestBody LoginTemplate lt){
 		
 		User user = udao.findByEmail(lt.getEmail());
 		System.out.println(user);
-		//TODO: Password verification
-		if(user==null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); //Response if user is not found
-		}else {
+		
+		boolean valid = sec.checkPassword(lt.getPassword(), user.getPassword());
+
+		if(valid) {
 			return ResponseEntity.status(HttpStatus.OK).body(user);
+		}else {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); //Response if user is not found
 		}
 	}
 	
