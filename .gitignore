@@ -1,3 +1,4 @@
 target/
 *.swp
 .sonarlint/
+*.code-workspace
