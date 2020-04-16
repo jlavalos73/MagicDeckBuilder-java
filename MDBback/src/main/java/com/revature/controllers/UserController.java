@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,28 +18,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.User;
 import com.revature.repositories.UserDAO;
+import com.revature.security.PBKDF2Hasher;
+import com.revature.services.SecurityService;
 
 @CrossOrigin
 @RestController
 @RequestMapping(value="/user")
 public class UserController {
+	
 	@Autowired
 	private UserDAO dao;
+
 	
 	@GetMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable String email) {
-		User u = dao.findByEmail(email);
-		if(u == null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		Optional<User> userOption = dao.findByEmail(email);
+		if(userOption.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(userOption.get());			
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).body(u);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> addUser(@RequestBody User u){
+		String raw = u.getPassword();
+		u.setPassword(SecurityService.hashPassword(raw));
 		dao.insert(u);
-		return ResponseEntity.status(HttpStatus.OK).build();
+		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
