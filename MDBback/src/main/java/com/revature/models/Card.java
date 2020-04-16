@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Component
@@ -43,7 +43,7 @@ public class Card {
 
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn
-	@JsonManagedReference
+	@JsonBackReference
 	private Deck deck;
 
 	public Card() {
