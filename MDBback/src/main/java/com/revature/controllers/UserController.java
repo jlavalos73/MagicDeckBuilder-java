@@ -43,7 +43,7 @@ public class UserController {
 		String raw = u.getPassword();
 		u.setPassword(SecurityService.hashPassword(raw));
 		dao.insert(u);
-		return ResponseEntity.status(HttpStatus.OK).build();
+		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
 	@PutMapping
