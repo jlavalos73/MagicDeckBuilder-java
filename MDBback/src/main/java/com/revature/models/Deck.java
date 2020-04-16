@@ -28,31 +28,15 @@ public class Deck {
 	private int id;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="deck")
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Card> cards;
 	
 	@Column
 	private String name;
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
 
 	@ManyToOne
 	@JoinColumn(name="owner")
-	@JsonManagedReference
+	@JsonBackReference
 	private User owner;
 
 	public Deck() {
@@ -60,22 +44,6 @@ public class Deck {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	public Deck(List<Card> cards, String name, User owner) {
-		super();
-		this.cards = cards;
-		this.name = name;
-		this.owner = owner;
-	}
-
-	public Deck(int id, List<Card> cards, String name, User owner) {
-		super();
-		this.id = id;
-		this.cards = cards;
-		this.name = name;
-		this.owner = owner;
-	}
 
 	public int getId() {
 		return id;
@@ -93,6 +61,37 @@ public class Deck {
 		this.cards = cards;
 	}
 
+	public Deck(List<Card> cards, String name, User owner) {
+		super();
+		this.cards = cards;
+		this.name = name;
+		this.owner = owner;
+	}
+
+	public Deck(int id, List<Card> cards, String name, User owner) {
+		super();
+		this.id = id;
+		this.cards = cards;
+		this.name = name;
+		this.owner = owner;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	
 	@Override
 	public String toString() {
 		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name + ", owner=" + owner + "]";

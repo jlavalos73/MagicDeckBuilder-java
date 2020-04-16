@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Component
@@ -37,7 +37,7 @@ public class User {
 	private String lastName;
 	
 	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Deck> decks;
 
 	public User() {
