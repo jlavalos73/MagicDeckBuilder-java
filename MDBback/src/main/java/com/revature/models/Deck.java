@@ -2,6 +2,7 @@ package com.revature.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,25 @@ public class Deck {
 	@JsonBackReference
 	private List<Card> cards;
 	
+	@Column
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="owner")
 	@JsonManagedReference
@@ -41,15 +60,21 @@ public class Deck {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Deck(int id, List<Card> cards) {
+	
+
+	public Deck(List<Card> cards, String name, User owner) {
+		super();
+		this.cards = cards;
+		this.name = name;
+		this.owner = owner;
+	}
+
+	public Deck(int id, List<Card> cards, String name, User owner) {
 		super();
 		this.id = id;
 		this.cards = cards;
-	}
-
-	public Deck(List<Card> cards) {
-		super();
-		this.cards = cards;
+		this.name = name;
+		this.owner = owner;
 	}
 
 	public int getId() {
@@ -70,7 +95,7 @@ public class Deck {
 
 	@Override
 	public String toString() {
-		return "Deck [id=" + id + ", cards=" + cards + "]";
+		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name + ", owner=" + owner + "]";
 	}
 
 	@Override
@@ -79,6 +104,8 @@ public class Deck {
 		int result = 1;
 		result = prime * result + ((cards == null) ? 0 : cards.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
 		return result;
 	}
 
@@ -97,6 +124,16 @@ public class Deck {
 		} else if (!cards.equals(other.cards))
 			return false;
 		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
 			return false;
 		return true;
 	}
