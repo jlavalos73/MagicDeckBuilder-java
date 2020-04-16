@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class UserController {
 	@Autowired
 	private UserDAO dao;
 	
-	@GetMapping("/{email}")
+	@GetMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable String email) {
 		User u = dao.findByEmail(email);
 		if(u == null) {
@@ -33,19 +34,19 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> addUser(@RequestBody User u){
 		dao.insert(u);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
-	@PutMapping
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> deleteUser(@RequestBody User u){
 		dao.delete(u);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
-	@PatchMapping
+	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		dao.update(u);
 		return ResponseEntity.status(HttpStatus.OK).build();

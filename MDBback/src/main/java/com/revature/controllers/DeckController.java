@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class DeckController {
 	@Autowired
 	private DeckDAO dao;
 	
-	@GetMapping("/{id}")
+	@GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> getDeck(@PathVariable("id") int id) {
 		Deck d = dao.findById(id);
 		if(d == null) {
@@ -32,19 +33,19 @@ public class DeckController {
 		return ResponseEntity.status(HttpStatus.OK).body(d);
 	}
 	
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> addDeck(@RequestBody Deck d){
 		dao.insert(d);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(d);
 	}
 	
-	@PutMapping
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> deleteDeck(@RequestBody Deck d){
 		dao.delete(d);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	
-	@PatchMapping
+	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> updateDeck(@RequestBody Deck d){
 		dao.update(d);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
