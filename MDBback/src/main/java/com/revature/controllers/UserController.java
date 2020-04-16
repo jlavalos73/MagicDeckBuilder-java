@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,8 @@ public class UserController {
 	@Autowired
 	private UserDAO dao;
 
-	@GetMapping("/{email}")
+	
+	@GetMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable String email) {
 		Optional<User> userOption = dao.findByEmail(email);
 		if(userOption.isPresent()) {
@@ -38,7 +40,7 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> addUser(@RequestBody User u){
 		String raw = u.getPassword();
 		u.setPassword(SecurityService.hashPassword(raw));
@@ -46,13 +48,13 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
-	@PutMapping
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> deleteUser(@RequestBody User u){
 		dao.delete(u);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
-	@PatchMapping
+	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		dao.update(u);
 		return ResponseEntity.status(HttpStatus.OK).build();
