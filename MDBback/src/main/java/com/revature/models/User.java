@@ -114,8 +114,11 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", decks=" + decks + "]";
+		return "User [id=" + id + ", " + (email != null ? "email=" + email + ", " : "")
+				+ (password != null ? "password=" + password + ", " : "")
+				+ (firstName != null ? "firstName=" + firstName + ", " : "")
+				+ (lastName != null ? "lastName=" + lastName + ", " : "") + (decks != null ? "decks=" + decks : "")
+				+ "]";
 	}
 
 	@Override

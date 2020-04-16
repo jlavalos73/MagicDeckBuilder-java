@@ -1,6 +1,7 @@
 package com.revature.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -20,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
 	private SessionFactory sf;
 	
 	@Override
-	public User findByEmail(String email) {
+	public Optional<User> findByEmail(String email) {
 		String hql = "FROM User AS u WHERE u.email = :email";
 		Session s  = sf.getCurrentSession();
 		
@@ -28,8 +29,9 @@ public class UserDAOImpl implements UserDAO {
 		
 		query.setParameter("email", email);
 		
-		List<User> results = query.list();
-		return results.get(0);
+		Optional<User> results = Optional.ofNullable(query.getSingleResult());
+		
+		return results;
 	}
 
 	@Override
