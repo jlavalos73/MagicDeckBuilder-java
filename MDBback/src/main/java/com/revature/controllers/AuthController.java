@@ -4,11 +4,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,16 +45,5 @@ public class AuthController {
 		return ResponseEntity.badRequest().build();// Response if user is not found
 
 	}
-	
-	@GetMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> findById(@PathVariable String email) {
-		Optional<User> userOption = udao.findByEmail(email);
-		if(userOption.isPresent()) {
-			return ResponseEntity.status(HttpStatus.OK).body(userOption.get());			
-		} else {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-	}
-	
 
 }

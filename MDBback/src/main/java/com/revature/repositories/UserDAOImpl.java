@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void insert(User u) {
 		Session s = sf.getCurrentSession(); 
-		s.saveOrUpdate(u);
+		s.save(u);
 		
 		
 	}

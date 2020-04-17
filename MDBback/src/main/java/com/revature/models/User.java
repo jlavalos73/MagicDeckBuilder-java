@@ -36,7 +36,7 @@ public class User {
 	@Column
 	private String lastName;
 	
-	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private List<Deck> decks;
 
