@@ -34,8 +34,8 @@ public class Deck {
 	@Column
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name="owner")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	@JsonBackReference
 	private User owner;
 
@@ -94,7 +94,7 @@ public class Deck {
 	
 	@Override
 	public String toString() {
-		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name + ", owner=" + owner + "]";
+		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name + "]";
 	}
 
 	@Override

@@ -40,4 +40,5 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     	<property name="nestedTransactionAllowed" value="true"/>
     </bean>
+   
 </beans>
