@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.User;
 import com.revature.repositories.UserDAO;
-import com.revature.security.PBKDF2Hasher;
 import com.revature.services.SecurityService;
 
 @CrossOrigin
@@ -56,7 +55,7 @@ public class UserController {
 	
 	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User u){
-		dao.update(u);
+		dao.insert(u);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
