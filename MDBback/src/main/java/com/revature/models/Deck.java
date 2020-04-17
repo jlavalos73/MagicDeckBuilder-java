@@ -94,7 +94,7 @@ public class Deck {
 	
 	@Override
 	public String toString() {
-		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name + ", owner=" + owner + "]";
+		return "Deck [id=" + id + ", cards=" + cards + ", name=" + name +"]";
 	}
 
 	@Override
