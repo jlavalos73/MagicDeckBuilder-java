@@ -41,7 +41,7 @@ public class Card {
 	private int toughness;
 	
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn
 	@JsonBackReference
 	private Deck deck;

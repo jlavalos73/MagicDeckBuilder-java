@@ -31,7 +31,7 @@ public class DeckDAOImpl implements DeckDAO {
 	@Override
 	public void insert(Deck d) {
 		Session s = sf.getCurrentSession();
-		s.save(d);
+		s.saveOrUpdate(d);
 		
 	}
 
