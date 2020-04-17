@@ -47,7 +47,7 @@ public class DeckController {
 	
 	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> updateDeck(@RequestBody Deck d){
-		dao.update(d);
+		dao.insert(d);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
