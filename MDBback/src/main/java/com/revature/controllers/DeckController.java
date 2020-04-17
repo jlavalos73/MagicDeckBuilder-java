@@ -39,11 +39,14 @@ public class DeckController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(d);
 	}
 	
-	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Deck> deleteDeck(@RequestBody Deck d){
+	@DeleteMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Deck> deleteDeck(@PathVariable("id") int id){
+		Deck d = dao.findById(id);
 		dao.delete(d);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
+	
+	
 	
 	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Deck> updateDeck(@RequestBody Deck d){
