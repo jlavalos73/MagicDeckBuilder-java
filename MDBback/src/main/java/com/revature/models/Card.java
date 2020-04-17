@@ -157,7 +157,7 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", name=" + name + ", type=" + type + ", text=" + text + ", mana=" + mana + ", power="
-				+ power + ", toughness=" + toughness + ", deck=" + deck + "]";
+				+ power + ", toughness=" + toughness + "]";
 	}
 
 	@Override
