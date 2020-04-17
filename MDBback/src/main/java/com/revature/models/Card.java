@@ -157,14 +157,13 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", name=" + name + ", type=" + type + ", text=" + text + ", mana=" + mana + ", power="
-				+ power + ", toughness=" + toughness + ", deck=" + deck + "]";
+				+ power + ", toughness=" + toughness + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((deck == null) ? 0 : deck.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((mana == null) ? 0 : mana.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -184,11 +183,6 @@ public class Card {
 		if (getClass() != obj.getClass())
 			return false;
 		Card other = (Card) obj;
-		if (deck == null) {
-			if (other.deck != null)
-				return false;
-		} else if (!deck.equals(other.deck))
-			return false;
 		if (id != other.id)
 			return false;
 		if (mana == null) {
